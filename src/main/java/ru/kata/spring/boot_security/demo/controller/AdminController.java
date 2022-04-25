@@ -6,6 +6,7 @@ import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.*;
 import ru.kata.spring.boot_security.demo.models.User;
+import ru.kata.spring.boot_security.demo.service.RoleService;
 import ru.kata.spring.boot_security.demo.service.UserService;
 
 @Controller
@@ -13,10 +14,12 @@ import ru.kata.spring.boot_security.demo.service.UserService;
 public class AdminController {
 
     private final UserService userService;
+    private final RoleService roleService;
 
     @Autowired
-    public AdminController(UserService userService) {
+    public AdminController(UserService userService, RoleService roleService) {
         this.userService = userService;
+        this.roleService = roleService;
     }
 
 
@@ -33,7 +36,8 @@ public class AdminController {
 
 
     @GetMapping("/users/user-create")
-    public String createUserForm(@ModelAttribute("user") User user) {
+    public String createUserForm(@ModelAttribute("user") User user, Model model) {
+        model.addAttribute("roles", roleService.getAllRoles());
         return "user-create";
     }
 
@@ -45,9 +49,9 @@ public class AdminController {
 
 
     @GetMapping("/users/user-update/{id}")
-    public String updateUserForm(@PathVariable("id")long id, Model model) {
-        User user = userService.findUserById(id);
-        model.addAttribute("user", user);
+    public String updateUserForm(@PathVariable("id") long id, Model model) {
+        model.addAttribute("roles", roleService.getAllRoles());
+        model.addAttribute("user", userService.findUserById(id));
         return "user-update";
     }
 
