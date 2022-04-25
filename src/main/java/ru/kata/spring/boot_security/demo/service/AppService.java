@@ -28,8 +28,7 @@ public class UserService implements UserDetailsService {
         this.userRepository = userRepository;
     }
 
-//    @Autowired
-//    private     BCryptPasswordEncoder bCryptPasswordEncoder;
+    private final BCryptPasswordEncoder bCryptPasswordEncoder = new BCryptPasswordEncoder();
 
     @Override
     @Transactional
@@ -65,13 +64,12 @@ public class UserService implements UserDetailsService {
     }
 
     public boolean saveUser(User user) {
-//        User userFromDB = userRepository.findByUsername(user.getUsername());
-//
-//        if (userFromDB != null) {
-//            return false;
-//        }
-//        user.setRoles(Collections.singleton(new Role(1L, "ROLE_USER")));
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
+        User userFromDB = userRepository.findByUsername(user.getUsername());
+
+        if (userFromDB != null) {
+            return false;
+        }
+        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
     }

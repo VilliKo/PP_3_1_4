@@ -20,7 +20,9 @@
                 <th>Id</th>
                 <th>First name</th>
                 <th>Last name</th>
+                <th>Age</th>
                 <th>Username</th>
+                <th>Roles</th>
             </tr>
             </thead>
             <tbody>
@@ -28,7 +30,9 @@
                 <td th:text="${user.getId()}"></td>
                 <td th:text="${user.getFirstname()}"></td>
                 <td th:text="${user.getLastname()}"></td>
+                <td th:text="${user.getAge()}"></td>
                 <td th:text="${user.getUsername()}"></td>
+                <td th:text="${user.getRoles()}"></td>
                 <td><a th:href="@{/admin/users/user-update/{id}(id=${user.id})}">Edit</a></td>
                 <td><a th:href="@{/admin/users/user-delete/{id}(id=${user.id})}">Delete</a></td>
             </tr>
