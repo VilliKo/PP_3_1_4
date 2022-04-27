@@ -25,8 +25,8 @@ Enter the following details:
     <label for="username">username:</label>
     <input type="text" th:field="*{username}" id="username"/>
     <br/>
-    <label for="password">password:</label>
-    <input type="text" id="password"/>
+    <label th:for="password">password</label>
+    <input type="password" name="password" th:id="password"><br/>
     <br/>
     <label>
         <select size="3" multiple="multiple" name="roles" id="roles">
