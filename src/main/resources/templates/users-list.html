@@ -32,7 +32,9 @@
                 <td th:text="${user.getLastname()}"></td>
                 <td th:text="${user.getAge()}"></td>
                 <td th:text="${user.getUsername()}"></td>
-                <td th:text="${user.getRoles()}"></td>
+                <td th:each="role : ${user.roles}"
+                    th:text="${role.name}"></td>
+<!--                <td th:text="${user.getRoles()}"></td>-->
                 <td><a th:href="@{/admin/users/user-update/{id}(id=${user.id})}">Edit</a></td>
                 <td><a th:href="@{/admin/users/user-delete/{id}(id=${user.id})}">Delete</a></td>
             </tr>
