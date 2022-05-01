@@ -38,4 +38,13 @@ public class Role implements GrantedAuthority {
     public String getAuthority() {
         return getName();
     }
+
+//    public String justName() {
+//        if (name == "ROLE_ADMIN") {
+//            return "ADMIN";
+//        } else if (name == "ROLE_USER") {
+//            return "USER";
+//        }
+//        return null;
+//    }
 }

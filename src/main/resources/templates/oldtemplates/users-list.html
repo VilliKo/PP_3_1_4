@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Users</title>
+</head>
+<body>
+
+<form th:action="@{'/logout'}">
+    <input type="submit" value="Logout"/>
+</form>
+
+<div th:switch="${users}">
+    <h2 th:case="null">No users found!</h2>
+    <div th:case="*">
+        <h2>Users</h2>
+        <table>
+            <thead>
+            <tr>
+                <th>Id</th>
+                <th>First name</th>
+                <th>Last name</th>
+                <th>Age</th>
+                <th>Username</th>
+                <th>Roles</th>
+            </tr>
+            </thead>
+            <tbody>
+            <tr th:each="user : ${users}">
+                <td th:text="${user.getId()}"></td>
+                <td th:text="${user.getFirstname()}"></td>
+                <td th:text="${user.getLastname()}"></td>
+                <td th:text="${user.getAge()}"></td>
+                <td th:text="${user.getUsername()}"></td>
+                <td th:each="role : ${user.roles}"
+                    th:text="${role.name}"></td>
+
+                <td><a th:href="@{/admin/users/user-update/{id}(id=${user.id})}">Edit</a></td>
+                <td><a th:href="@{/admin/users/user-delete/{id}(id=${user.id})}">Delete</a></td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+    <p><a href="/admin/users/user-create">Create user</a></p>
+</div>
+</body>
+</html>

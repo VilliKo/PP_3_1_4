@@ -52,12 +52,15 @@ public class UserService implements UserDetailsService {
         return userFromDb.orElse(new User());
     }
 
+    public Optional<User> findByID(long id) {
+        return userRepository.findById(id);
+    }
+
+    public User findByUsername(String username) {
+        return userRepository.findByUsername(username);
+    }
+
     public boolean updateUser(User user) {
-//        User userFromDB = userRepository.findByUsername(user.getUsername());
-//
-//        if (userFromDB != null) {
-//            return false;
-//        }
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         userRepository.save(user);
         return true;
