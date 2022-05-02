@@ -47,15 +47,6 @@ public class UserService implements UserDetailsService {
         return userRepository.findAll();
     }
 
-    public User findUserById(long id) {
-        Optional<User> userFromDb = userRepository.findById(id);
-        return userFromDb.orElse(new User());
-    }
-
-    public Optional<User> findByID(long id) {
-        return userRepository.findById(id);
-    }
-
     public User findByUsername(String username) {
         return userRepository.findByUsername(username);
     }
