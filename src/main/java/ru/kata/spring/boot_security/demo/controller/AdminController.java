@@ -25,9 +25,6 @@ public class AdminController {
         this.roleService = roleService;
     }
 
-//    @GetMapping
-
-
     @GetMapping
     public String homeAdmin() {
         return "redirect:/admin/users";
@@ -41,29 +38,24 @@ public class AdminController {
         return "users-list";
     }
 
-    @RequestMapping("/getOne")
-    @ResponseBody
-    public Optional<User> getOne(long id) {
-        return userService.findByID(id);
-    }
-
     @PostMapping("/users/user-create")
     public String createUser(@ModelAttribute("user") User user) {
         userService.saveUser(user);
         return "redirect:/admin/users";
     }
 
-    @RequestMapping(value="/users/user-update", method = {RequestMethod.PUT, RequestMethod.GET})
-    public String updateUser(User user) {
+    @PatchMapping("/users/user-update/{id}")
+    public String updateUser(@ModelAttribute("userEdit") User user) {
         userService.updateUser(user);
         return "redirect:/admin/users";
     }
 
-    @DeleteMapping("/users/user-delete")
-    public String deleteUser(long id) {
+    @GetMapping("/users/user-delete/{id}")
+    public String deleteUser(@PathVariable("id") long id) {
         userService.removeUser(id);
         return "redirect:/admin/users";
     }
+
 
 
 //    @GetMapping("/users/user-create")
@@ -86,11 +78,6 @@ public class AdminController {
 //        return "user-update";
 //    }
 //
-//    @PatchMapping("/users/user-update/{id}")
-//    public String updateUser(@ModelAttribute("user") User user) {
-//        userService.updateUser(user);
-//        return "redirect:/admin/users";
-//    }
 //
 //
 //    @GetMapping("/users/user-delete/{id}")
