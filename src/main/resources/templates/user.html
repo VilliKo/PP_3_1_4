@@ -10,54 +10,54 @@
     <title>User page</title>
 </head>
 <body>
-<div class="container-fluid bg-dark bg-gradient text-white">
-    <div class="row">
-        <div class="col-11 fs-5">
-            <p class="mt-1" id="auth"/>
-        </div>
-        <div class="col fs-5">
-            <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
-                <input type="submit" class="btn bg-transparent text-secondary fs-5" value="logout"/>
-            </form>
+    <div class="container-fluid bg-dark bg-gradient text-white">
+        <div class="row">
+            <div class="col-11 fs-5">
+               <p class="mt-1" id="auth"/>
+            </div>
+            <div class="col fs-5">
+                <form th:action="@{/logout}" method="post" class="d-flex justify-content-end">
+                    <input type="submit" class="btn bg-transparent text-secondary fs-5" value="logout"/>
+                </form>
+            </div>
         </div>
     </div>
-</div>
 
-<div class="container-fluid">
-    <div class="row min-vh-100">
-        <div class="col-2  mt-2 ps-0 pe-0">
-            <div class="list-group">
-                <a href="/admin" class="list-group-item list-group-item-action border-0" sec:authorize="hasRole('ADMIN')">Admin</a>
-                <a href="/user" class="list-group-item list-group-item-action border-0 active" aria-current="true">User</a>
-            </div>
-        </div>
-        <div class="col-10 bg-light ps-3 pe-3">
-            <h1 class="mt-2">User information-page</h1>
-            <div class="card mt-3">
-                <div class="card-header">
-                    <h4>About user</h4>
+    <div class="container-fluid">
+        <div class="row min-vh-100">
+            <div class="col-2  mt-2 ps-0 pe-0">
+                <div class="list-group">
+                    <a href="/admin" class="list-group-item list-group-item-action border-0" sec:authorize="hasRole('ADMIN')">Admin</a>
+                    <a href="/user" class="list-group-item list-group-item-action border-0 active" aria-current="true">User</a>
                 </div>
-                <div class="card-body">
-                    <table class="table table-striped fs-7">
-                        <thead>
-                        <tr>
-                            <th>Id</th>
-                            <th>First name</th>
-                            <th>Last name</th>
-                            <th>Age</th>
-                            <th>Email</th>
-                            <th>Role</th>
-                        </tr>
-                        </thead>
-                        <tbody id="tableBodyUser">
-                        </tbody>
-                    </table>
+            </div>
+            <div class="col-10 bg-light ps-3 pe-3">
+                <h1 class="mt-2">User information-page</h1>
+                <div class="card mt-3">
+                    <div class="card-header">
+                        <h4>About user</h4>
+                    </div>
+                    <div class="card-body">
+                        <table class="table table-striped fs-7">
+                            <thead>
+                            <tr>
+                                <th>Id</th>
+                                <th>First name</th>
+                                <th>Last name</th>
+                                <th>Age</th>
+                                <th>Email</th>
+                                <th>Role</th>
+                            </tr>
+                            </thead>
+                            <tbody id="tableBodyUser">
+                            </tbody>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
-</div>
-<script src="../static/auth.js"></script>
-<script src="../static/user.js"></script>
+    <script src="../static/auth.js"></script>
+    <script src="../static/user.js"></script>
 </body>
 </html>

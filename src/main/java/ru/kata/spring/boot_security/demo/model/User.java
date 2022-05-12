@@ -39,7 +39,7 @@ public class User implements UserDetails {
             joinColumns = @JoinColumn(name = "user_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "role_id", referencedColumnName = "id")
     )
-    private Set<ru.kata.spring.boot_security.demo.model.Role> roleSet;
+    private Set<Role> roleSet;
 
     public User() {
 
@@ -63,11 +63,11 @@ public class User implements UserDetails {
         this.age = age;
     }
 
-    public Set<ru.kata.spring.boot_security.demo.model.Role> getRoleSet() {
+    public Set<Role> getRoleSet() {
         return roleSet;
     }
 
-    public void setRoleSet(Set<ru.kata.spring.boot_security.demo.model.Role> roleSet) {
+    public void setRoleSet(Set<Role> roleSet) {
         this.roleSet = roleSet;
     }
 

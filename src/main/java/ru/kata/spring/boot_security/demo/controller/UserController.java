@@ -36,7 +36,7 @@ public class UserController {
     public String userGetPage(@AuthenticationPrincipal UserDetails userDetails, Model model) {
         model.addAttribute("authUserInfo", userService.getUserByEmail(userDetails.getUsername()));
         model.addAttribute("roleAdmin", roleService.getRoleByRoleName("ROLE_ADMIN"));
-        return "login";
+        return "user";
     }
 
     @PostMapping("/admin")
