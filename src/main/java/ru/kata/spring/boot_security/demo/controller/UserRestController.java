@@ -1,5 +1,6 @@
 package ru.kata.spring.boot_security.demo.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.web.bind.annotation.*;
@@ -19,6 +20,7 @@ public class UserRestController {
     private UserService userService;
     private RoleService roleService;
 
+    @Autowired
     public UserRestController(UserService userService, RoleService roleService) {
         this.userService = userService;
         this.roleService = roleService;
@@ -29,8 +31,6 @@ public class UserRestController {
         return userService.getAllUsers();
     }
 
-
-
     @GetMapping("/{id}")
     public User getUserById(@PathVariable("id") long id) {
         return userService.getUserById(id);
@@ -39,15 +39,11 @@ public class UserRestController {
     @PostMapping()
     public User addUser(@RequestBody User user, @RequestParam(value = "inputRoles", required = false) Long[] inputRoles){
         Set<Role> temp = new HashSet<>();
-        if (inputRoles == null) {
-            temp.add(roleService.getRoleByRoleName("ROLE_USER"));
-            user.setRoleSet(temp);
-        } else {
-            for(Long i: inputRoles) {
-                temp.add(roleService.getRoleById(i));
-            }
-            user.setRoleSet(temp);
+
+        for(Long i: inputRoles) {
+            temp.add(roleService.getRoleById(i));
         }
+        user.setRoleSet(temp);
         userService.addUser(user);
         return userService.getUserByEmail(user.getEmail());
     }
@@ -55,15 +51,11 @@ public class UserRestController {
     @PatchMapping()
     public User updateUser(@RequestBody User user, @RequestParam(value = "inputRoles", required = false) Long[] inputRoles){
         Set<Role> temp = new HashSet<>();
-        if (inputRoles == null) {
-            temp.add(roleService.getRoleByRoleName("ROLE_USER"));
-            user.setRoleSet(temp);
-        } else {
-            for(Long i: inputRoles) {
-                temp.add(roleService.getRoleById(i));
-            }
-            user.setRoleSet(temp);
+
+        for(Long i: inputRoles) {
+            temp.add(roleService.getRoleById(i));
         }
+        user.setRoleSet(temp);
         userService.updateUser(user);
         return user;
     }
