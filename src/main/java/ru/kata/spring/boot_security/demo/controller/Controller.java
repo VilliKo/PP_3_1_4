@@ -74,7 +74,7 @@ public class Controller {
 
     @GetMapping("/")
     public String indexPage() {
-        return "login";
+        return "redirect:/login";
     }
 
 }
